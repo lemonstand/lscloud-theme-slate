@@ -1,0 +1,18 @@
+---
+action: 'shop:search'
+template: template-1
+protocol: all
+published: true
+name: Search
+url: '/search/:page?'
+---
+{% set numProds = products.get().count() %}
+<div class="row content">
+  <h1>Search Results</h1>
+  <p>{{ numProds }} Product{{ numProds == 1 ? null : 's' }} Found</p>
+</div>
+<div id="shop" class="row content">
+    <div class="col-xs-12 col-sm-12">
+      {{ partial('shop-product-loop', { 'product': product, 'products': products, 'pagination': pagination}) }} 
+    </div>
+</div>

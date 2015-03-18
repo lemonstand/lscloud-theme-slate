@@ -1,0 +1,107 @@
+---
+action: 'shop:login'
+template: template-1
+protocol: all
+published: true
+name: Login
+url: /login
+---
+
+<div class="content" id="login-page">
+        {{ flash() }}
+
+    <div class="row">
+        <div class="col-sm-6">
+
+            <p id="title-p">RETURNING CUSTOMERS</p>
+
+            {{ open_form({'data-ajax-handler': 'shop:onLogin', 'data-validation-message' : '', 'class' : 'form-horizontal' }) }}
+
+                <div class="form-group">
+                    <label for="login_email" class="control-label">Email</label><br>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control input-sm" id="login_email" name="email" value="{{ post('email') }}" size="40" autofocus />
+                        <span class="error small text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="login_password" class="control-label">Password</label><br>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control input-sm" id="login_password" name="password" size="20" />
+                        <span class="error small text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-important" id="login_button">Login</button>
+                        <a class="btn btn-sm btn-link forgotpass" href="{{ site_url('password-restore') }}">Forgot your password?</a>
+                    </div>
+                </div>
+                
+                <input type="hidden" name="redirect" value="{{ site_url(root_url('/')) }}"/>
+      
+            {{ close_form() }}
+        </div>
+    
+        <div class="col-sm-6">
+    
+            <p id="title-p">NEW CUSTOMERS</p>
+  
+            {{ open_form({'data-ajax-handler': 'shop:onSignup', 'data-validation-message' : '', 'class' : 'form-horizontal' }) }}
+
+                <div class="form-group">
+                    <label for="signup[first_name]" class="control-label">First Name</label><br>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control input-sm" id="signup[first_name]" name="signup[first_name]" value="{{ post('signup[first_name]') }}" size="16"/>
+                        <span class="error small text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signup[last_name]" class="control-label">Last Name</label><br>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control input-sm" id="signup[last_name]" name="signup[last_name]" value="{{ post('signup[last_name]') }}" size="16"/>
+                        <span class="error small text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="signup[email]" class="control-label">Email</label><br>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control input-sm" id="signup[email]" name="signup[email]" value="{{ post('signup[email]') }}" size="40" />
+                        <span class="error small text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup[password]" class="control-label">Password</label><br>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control input-sm" id="signup[password]" name="signup[password]" value="" size="16" />
+                        <span class="error small text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup[password_confirmation]" class="control-label">Confirm</label><br>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control input-sm" id="signup[password_confirmation]" name="signup[password_confirmation]" value="" size="16" />
+                        <span class="error small text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-sm btn-important">Submit</button>
+                    </div>
+                </div>
+
+                <input type="hidden" name="autologin" value="1" />
+                <input type="hidden" name="redirect" value="{{ site_url('registered') }}"/>
+
+            {{ close_form() }}
+
+        </div>
+    </div>
+</div>

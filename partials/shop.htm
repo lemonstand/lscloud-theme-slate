@@ -1,0 +1,18 @@
+{% set category_page = globals.category_page %}
+
+<div class="row content" id="shopp">
+	<h4>Welcome to the shop</h4>
+	<div class="col-md-12 cat-list">
+		{{ partial('shop-categories', { 'products':products }) }}
+	</div>
+	<div class="col-md-12">
+		{% if category_page and not category %}
+			<h2>Category not found</h2>
+			<p>The requested category was not found.</p>
+		{% else %}
+			<div class="row">
+				{{ partial('shop-product-loop', { 'items_per_page': items_per_page }) }}
+			</div>
+		{% endif %}
+	</div>
+</div>

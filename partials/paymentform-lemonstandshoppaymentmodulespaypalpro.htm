@@ -1,0 +1,73 @@
+---
+description: 'Payment form partial for PayPal Pro payment method'
+---
+<br><br>
+<form method="post" action="" data-ajax-handler="shop:onPay">
+<div class="payment-card">
+    <input type="hidden" value="{{  paymentMethod.id}}" name="payment_method_id">
+    <div class="form">
+      <div class="row">
+          <p class="col-md-12 text-right"><i class="fa fa-lock"></i> This payment is secure</p><br>
+          <div class="col-sm-6 form-group">
+              <label for="firstName">Cardholder First Name</label>
+              <input autocomplete="off" name="firstName" value="" id="firstName" type="text" class="form-control" placeholder="Cardholder First Name"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-6 form-group">
+              <label for="lastName">Cardholder Last Name</label>
+              <input autocomplete="off" name="lastName" value="" id="lastName" type="text" class="form-control" placeholder="Cardholder Last Name"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-6 form-group">
+              <label for="cardNumber">Credit Card Number</label>
+              <input autocomplete="off" name="cardNumber" value="" id="cardNumber" type="text" class="form-control credit-card-input" placeholder="Credit Card Number" pattern="[0-9]*"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          
+          <div class="col-sm-3 form-group">
+              <label for="creditCardType">Credit Card Type</label>
+              <div class="select-wrap">
+                  <select name="creditCardType" id="creditCardType" class="form-control">
+                      <option value="Visa">Visa</option>
+                      <option value="MasterCard">MasterCard</option>
+                      <option value="Discover">Discover</option>
+                      <option value="Amex">American Express</option>
+                  </select>
+                  <span class="error small text-danger"></span> 
+              </div>
+          </div>
+          <div class="col-sm-3 form-group helper">
+                <label for="securityCode">Card Security Code</label>
+                <i class="fa fa-question"></i>
+                <input autocomplete="off" name="securityCode" value="" id="securityCode" type="text" class="form-control" placeholder="CVV2"/>
+                <span class="error small text-danger"></span> 
+            </div>
+    
+
+        
+          <div class="col-sm-3 form-group">
+                <label for="expiryMonth">Expiration Month</label>
+                <select name="expiryMonth" class="form-control">
+                {% for i in 1..12 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+                </select>
+                <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-3 form-group">
+                <label for="expiryYear">Expiration Year</label>
+                <select autocomplete="off" name="expiryYear" id="expiryYear" class="form-control">
+                    {% for i in 2014..2034 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+                <span class="error small text-danger"></span> 
+          </div>
+    
+
+    </div>
+    
+    </div>
+     </div>
+      <button type="submit" class="btn btn-important pull-right payment-button">Pay Securly Now</button>
+</form>

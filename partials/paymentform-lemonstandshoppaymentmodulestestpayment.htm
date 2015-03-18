@@ -1,0 +1,61 @@
+---
+description: 'Payment form partial for Test Payment payment method'
+---
+<h6>This is a test payment method. Never use your real credit card information in this form.</h6>
+<form method="post" action="" data-ajax-handler="shop:onPay">
+<div class="payment-card col-md-12">
+  <input type="hidden" name="payment_method_id" value="{{ paymentMethod.id}}">
+  <div class="form row">
+    <p class="col-md-12 text-right"><i class="fa fa-lock"></i> This payment is secure</p><br>
+    <div class="col-sm-6 form-group left">
+      <label for="FIRSTNAME">Cardholder First Name</label>
+      <input class="form-control" autocomplete="off" name="FIRSTNAME" value="John" id="FIRSTNAME" type="text" placeholder="Cardholder First Name"/>
+      <span class="error small text-danger"></span> 
+      
+    </div>
+    <div class="col-sm-6 form-group right">
+      <label for="LASTNAME">Cardholder Last Name</label>
+      <input class="form-control" autocomplete="off" name="LASTNAME" value="Smith" id="LASTNAME" type="text" placeholder="Cardholder Last Name"/>
+      <span class="error small text-danger"></span> 
+      
+    </div>
+    <div class="col-sm-12 form-group">
+      <label for="ACCT">Credit Card Number</label>
+      <input class="form-control credit-card-input" autocomplete="off" name="ACCT" id="ACCT" type="text" placeholder="Credit Card Number" value="4111111111111111" pattern="[0-9]*"/>
+      <span class="error small text-danger"></span> 
+      
+    </div>
+    <div class="col-sm-4 form-group helper">
+      <label for="CVV2">Card Security Code</label>
+      <i class="fa fa-question"></i>
+      <input class="form-control" autocomplete="off" name="CVV2" value="123" id="CVV2" type="text" placeholder="CVV2"/>
+      <span class="error small text-danger"></span> 
+      
+    </div>
+    <div class="col-sm-4 form-group">
+        <label for="EXPDATE_MONTH">Expiration Month</label>
+        <select name="EXPDATE_MONTH" id="EXPDATE_MONTH" class="form-control">
+        {% for i in 1..12 %}
+            <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+        </select>
+        <span class="error small text-danger"></span> 
+        
+    </div>
+
+    <div class="col-sm-4 form-group">
+        <label for="EXPDATE_YEAR">Expiration Year</label>
+        <select autocomplete="off" name="EXPDATE_YEAR" id="EXPDATE_YEAR" class="form-control">
+            {% for i in 2014..2034 %}
+            <option value="{{ i|slice(2, 2) }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+        <span class="error small text-danger"></span> 
+        
+    </div>
+    
+  </div><!-- End .payment-card -->
+ 
+</div>
+    <button type="submit" class="btn btn-important pull-right payment-button">Pay Securely Now</button>
+</form> 

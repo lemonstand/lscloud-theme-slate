@@ -1,0 +1,33 @@
+<div class="content">
+<div class="col-md-3 pull-right" id="checkout-summary">
+	<div class="right-sidebar">
+	{% if items.count %}
+		<div class="widget shopping-cart-summary">
+			<p id="title-p-d">Order Summary</p>
+	    <ul class="price-list list-group">
+	        <li class="list-group-item important">Subtotal: {{ cart.getSubtotal()|currency }}</li>
+	        {% if not active_page == 'shop' %}
+	        <li class="list-group-item important">Sales Tax: {{ cart.getTotalTax|currency }}</li>
+	        <li class="list-group-item important">Discount: {{ totals.discountTotal|currency }}</li>
+	        <li class="list-group-item important"><strong>Total: {{ totals.total|currency }}</strong></li>
+	    </ul>
+				{% else %}
+				    {% set active_page = globals.active_page %}
+					<a class="md-button black" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart">Update cart</a>
+					{% if customer %}
+						<a class="md-button large col-xs-12" href="{{ site_url('/checkout') }}">Checkout</a>
+						{% if active_page == "cart" %}<a href="{{ site_url('shop') }}">continue shopping</a>{% endif %}
+					{% else %}
+						<a class="md-button large col-xs-12" href="{{ site_url('/checkout-start') }}">Checkout</a>
+						{% if active_page == "cart" %}<a href="{{ site_url('shop') }}">continue shopping</a>{% endif %}
+					{% endif %}
+				{% endif %}
+		</div>
+
+	{% else %}
+		<h4 class="md-bordered-title">Your cart is empty!</h4>
+		<a class="md-button col-xs-12 cart-empty-button" href="{{ site_url('shop') }}">Continue shopping <span class="fa fa-arrow-circle-right"></span></a>
+	{% endif %}
+	</div>
+</div>
+</div>

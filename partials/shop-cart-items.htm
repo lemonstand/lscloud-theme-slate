@@ -1,0 +1,57 @@
+{% if cart.listitems|length %}
+	<div class="row content" id="cart-items">
+		<div class="col-sm-6">
+			Product
+		</div>
+		<div class="col-sm-3">
+			Quantity
+		</div>
+		<div class="col-sm-3">
+			Item Total
+		</div>
+	</div>
+{% else %}
+	<p>There are no Items in your cart!</p>
+{% endif %}
+
+
+
+
+{% for item in items %}
+	<div class="row" id="cart-row">
+
+			<div class="col-sm-2" id="cart-img">
+				<img src="{{ item.product.images.first.thumbnail('auto', 'auto') }}" alt="{{ item.product.name }}">
+			</div>
+		<div class="row" id="align-middle">
+			<div class="col-sm-4">
+				<a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
+				{% set options = item.optionsString() %}
+        {% if options %}
+            <p class="h6">{{ options|unescape }}</p>
+        {% endif %}
+			</div>
+			<div class="col-sm-2">
+				{% if edit_cart %}
+					<input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
+				{% else %}
+					{{item.quantity}}
+				{% endif %}
+			</div>
+			<div class="col-sm-3 col-xs-12" id="item-middle">
+				<p>
+					<span class="pull-left">{{ item.total()|currency }}</span>
+					{% if edit_cart %}
+						<a class="col-sm-3" id="item-close" href="#close" 
+						data-ajax-handler="shop:cart" 
+						{# data-ajax-confirm="Do you really want to remove this item from the cart?" #}
+						data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart, #navbar-totals=shop-minicart-totals"
+						data-ajax-extra-fields="delete_item='{{ item.key }}'"><i class="fa fa-times" id="remove-cart-item"></i></a>
+					{% endif %}
+				</p>
+
+				
+			</div>
+		</div>
+	</div>
+{% endfor %}

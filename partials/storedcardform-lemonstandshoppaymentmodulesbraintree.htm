@@ -1,0 +1,41 @@
+---
+description: 'Stored credit card form partial for Braintree payment method'
+---
+<form method="post" action="" data-ajax-handler="shop:onUpdateStoredCard">
+    <input type="hidden" value="{{  paymentMethod.id}}" name="payment_method_id">
+    <ul class="form">
+        <li class="field text left">
+            <label for="cardholderName">Cardholder Name</label>
+            <div><input autocomplete="off" name="cardholderName" value="" id="cardholderName" type="text" class="text"/></div>
+        </li>
+
+        <li class="field text right">
+            <label for="cardNumber">Credit Card Number</label>
+            <div><input autocomplete="off" name="cardNumber" value="" id="cardNumber" type="text" class="text"/></div>
+        </li>
+        <li class="field text">
+            <label for="securityCode">
+                Card Verification Value (CVV)
+            </label>
+            <div><input autocomplete="off" name="securityCode" value="" id="securityCode" type="text" class="text"/></div>
+        </li>
+
+        <li class="field text left">
+            <label for="expiryMonth">Expiration Date - Month</label>
+            <select name="expiryMonth">
+            {% for i in 1..12 %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+            </select>
+        </li>
+        <li class="field text right">
+            <label for="expiryYear">Expiration Date - Year</label>
+            <select autocomplete="off" name="expiryYear" id="expiryYear">
+                {% for i in 2014..2034 %}
+                <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+        </li>
+    </ul>
+    <input type="submit" value="Save" class="button">
+</form>

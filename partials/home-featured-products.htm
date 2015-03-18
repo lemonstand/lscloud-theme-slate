@@ -1,0 +1,10 @@
+{% if featuredCollection %}
+  {% for product in featuredCollection.products %}
+    <div class="col-md-4 feature-item">
+        {{ partial('shop-grid-item', {'product':product}) }}
+    </div>
+
+  {% endfor %}
+{% else %}
+  <p class="flash success">The product collection was not found. Please create this group on the Shop/Collections page and name it: featuredCollection.</p>
+{% endif %}

@@ -1,0 +1,22 @@
+---
+action: 'shop:customerProfile'
+template: template-1
+protocol: all
+published: true
+name: Profile
+url: /profile
+---
+
+<div class="content">
+	{% if customer %}
+	
+	<div class="panel-group checkout-accordions" id="profile-addresses">
+		{{ partial('shop-customerprofile') }}
+	</div>		
+	
+{% else %}
+	
+
+  <div class="row">Please <a href="{{ root_url('login') }}">login</a> to edit your profile.</div>
+{% endif %}
+</div>

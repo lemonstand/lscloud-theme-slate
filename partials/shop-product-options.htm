@@ -1,0 +1,12 @@
+{% if product.options.count %}
+  {% for index, option in product.options %}
+    <div class="product-options">
+      <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label><br>
+      <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="select-option" data-ajax-handler="shop:product" data-ajax-update="#product-page=shop-product">
+        {% for key, value in option.values %}
+          <option value="{{ key }}" {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  {% endfor %}
+{% endif %}

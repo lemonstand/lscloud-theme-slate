@@ -1,0 +1,55 @@
+---
+description: 'Payment form partial for Braintree payment method'
+---
+<br><br>
+<form method="post" action="" data-ajax-handler="shop:onPay">
+  <div class="payment-card">
+    <input type="hidden" value="{{  paymentMethod.id}}" name="payment_method_id">
+    <div class="form">
+        <div class="row">
+        
+          <div class="col-sm-6 form-group">
+              <label for="cardholderName">Cardholder Name</label>
+              <input autocomplete="off" name="cardholderName" value="" id="cardholderName" type="text" class="form-control" placeholder="Cardholder Name"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-6 form-group">
+              <label for="cardNumber">Credit Card Number</label>
+              <input autocomplete="off" name="cardNumber" value="" id="cardNumber" type="text" class="form-control credit-card-input" placeholder="Credit Card Number" pattern="[0-9]*"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-6 form-group helper">
+              <label for="securityCode">
+                Card Security Code
+              </label>
+              <i class="fa fa-question"></i>
+              <input autocomplete="off" name="securityCode" value="" id="securityCode" type="text" class="form-control" placeholder="Card Verification Value (CVV)"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-3 form-group">
+                <label for="expiryMonth">Expiration Month</label>
+                <select name="expiryMonth" class="form-control">
+                {% for i in 1..12 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+                </select>
+                <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-3 form-group">
+                <label for="expiryYear">Expiration Year</label>
+                <select autocomplete="off" name="expiryYear" id="expiryYear" class="form-control">
+                    {% for i in 2014..2034 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+                <span class="error small text-danger"></span> 
+          </div>
+
+          
+        </div>
+    </div>
+    </div><!-- End .payment-card -->
+
+      <button type="submit" class="btn btn-important pull-right payment-form">Pay Now</button>
+
+</form>

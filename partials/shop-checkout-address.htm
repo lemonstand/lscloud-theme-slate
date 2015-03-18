@@ -1,0 +1,140 @@
+<div class="col-md-12">
+{{ flash() }}
+{{ open_form({'class': 'custom', 'data-validation-message' : ''}) }}
+<div class="col-md-6">
+<p id="title-p-d">Billing Information</p>
+<div id="billing-info" class="row">
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control" name="billingInfo[firstName]" id="billing_firstName" value="{{ billingInfo.firstName }}" placeholder="Jonathan"/>
+    <span class="error small text-danger"></span>
+    <label for="billing_firstName">First Name</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control" name="billingInfo[lastName]" id="billing_lastName" value="{{ billingInfo.lastName }}" placeholder="Doe"/>
+    <label for="billing_lastName">Last Name</label>
+    <span class="error small text-danger"></span>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input type="email" class="form-control" name="billingInfo[email]" id="billing_email" value="{{ billingInfo.email }}" placeholder="example@email.com"/>
+    <span class="error small text-danger"></span>
+    <label for="billing_email">E-mail Address</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control" name="billingInfo[phone]" id="billing_phone" value="{{ billingInfo.phone }}" placeholder="(012)345-6789"/>
+    <span class="error small text-danger"></span>
+    <label for="billing_phone">Phone Number</label>
+  </div>
+  <div class="col-sm-12 form-group">
+    <input data-mirror type="text" class="form-control" id="billing_address" name="billingInfo[streetAddressLine1]" value="{{ billingInfo.streetAddressLine1 }}" placeholder="123 Example Dr"/>
+    <span class="error small text-danger"></span>
+    <label for="billing_address">Address</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control" name="billingInfo[city]" id="billing_city" value="{{ billingInfo.city }}" placeholder="Vancouver"/>
+    <span class="error small text-danger"></span>
+    <label for="billing_city">City</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control" id="billing_postalCode" name="billingInfo[postalCode]" value="{{ billingInfo.postalCode }}" placeholder="A1B2C3"/>
+    <span class="error small text-danger"></span>
+    <label for="billing_postalCode">Zip Code</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <label for="billing_country" class="hide">Country</label>
+    <!-- 
+      The state selector updates automatically when the country changes. 
+      See app.js for the implementation details. 
+      -->        
+      <select data-mirror id="billing_country" class="chzn-select form-control" name="billingInfo[countryId]" data-state-selector="#billing_state" data-current-state="{{ billingInfo.stateId }}">
+      {% for country in countries %}
+      <option {{ option_state(billingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
+      {% endfor %}
+      </select>
+    <span class="error small text-danger"></span>
+  </div>
+  <div class="col-sm-6 form-group">
+    <label for="billing_state" class="hide">State</label>
+      <select data-mirror id="billing_state" class="chzn-select form-control" name="billingInfo[stateId]" data-ajax-refresh> 
+      {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billingInfo.stateId}) }}
+      </select>
+    <span class="error small text-danger"></span>
+  </div>
+</div>
+{# row #}
+<div class="h6">
+  <a data-toggle-mirror="on" class="btn btn-default btn-form-mirror" href="#"><i class="fa fa-check" id="check-box"></i>Same as Billing information</a> 
+</div>
+</div>
+
+<div class="col-md-6">
+<p id="title-p-d">Shipping Information</p>
+
+
+
+<div id="shipping-info" class="row">
+  <div class="col-sm-6 form-group">
+    <input  data-mirror type="text" class="form-control disabled" name="shippingInfo[firstName]" id="shipping_firstName" value="{{ shippingInfo.firstName }}" placeholder="First Name"/>
+    <span class="error small text-danger"></span>
+    <label for="shipping_firstName">First Name</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control disabled" name="shippingInfo[lastName]" id="shipping_lastName" value="{{ shippingInfo.lastName }}" placeholder="Last Name"/>
+    <span class="error small text-danger"></span>
+    <label for="shipping_lastName">Last Name</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control disabled" name="shippingInfo[phone]" id="shipping_phone" value="{{ shippingInfo.phone }}" placeholder="Phone Number"/>
+    <span class="error small text-danger"></span>
+    <label for="shipping_phone">Phone Number</label>
+  </div>
+  <div class="col-sm-12 form-group">
+    <input data-mirror type="text" class="form-control disabled" name="shippingInfo[streetAddressLine1]" id="shipping_address"  value="{{ shippingInfo.streetAddressLine1 }}" placeholder="Address"/>
+    <span class="error small text-danger"></span>
+    <label for="shipping_address">Address</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control disabled" name="shippingInfo[city]" id="shipping_city" value="{{ shippingInfo.city }}" placeholder="City"/>
+    <span class="error small text-danger"></span>
+    <label for="shipping_city">City</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <input data-mirror type="text" class="form-control disabled" name="shippingInfo[postalCode]" id="shipping_postalCode" value="{{ shippingInfo.postalCode }}" placeholder="Zip Code"/>
+    <span class="error small text-danger"></span>
+    <label for="shipping_postalCode">Zip Code</label>
+  </div>
+  <div class="col-sm-6 form-group">
+    <label for="shipping_country" class="hide">Country</label>
+      <select data-mirror id="shipping_country" class="chzn-select form-control disabled" name="shippingInfo[countryId]" data-state-selector="#shipping_state" data-current-state="{{ shippingInfo.stateId }}" >
+      {% for country in countries %}
+      <option {{ option_state(shippingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
+      {% endfor %}
+      </select>
+    <span class="error small text-danger"></span>
+  </div>
+  <div class="col-sm-6 form-group">
+    <label for="shipping_state" class="hide">State</label>
+      <select data-mirror id="shipping_state" class="chzn-select form-control disabled" name="shippingInfo[stateId]" data-ajax-refresh > 
+      {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shippingInfo.stateId}) }}
+      </select>
+    <span class="error small text-danger"></span> 
+  </div>
+    {% if step == 'billing_info' %}
+      <a class="btn btn-important pull-right" href="#" data-ajax-handler="shop:checkout" data-ajax-update="#checkout-page=shop-checkout">Next step</a>
+    {% else %}
+      <a class="btn btn-default" href="#" 
+    data-ajax-handler="shop:checkout" 
+    data-ajax-update="#checkout-page=shop-checkout"
+    data-ajax-extra-fields="nextStep=billing_info">Start Again</a>
+    {% endif %}
+    {{ inputs }}
+</div>
+
+
+
+</div>
+{{ close_form() }}
+</div>
+
+
+
+

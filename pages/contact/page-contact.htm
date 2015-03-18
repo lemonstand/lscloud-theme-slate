@@ -1,0 +1,47 @@
+---
+template: template-1
+protocol: all
+published: true
+name: Contact
+url: /contact
+---
+<div class="row content">
+	<div class="col-md-12">
+		<div id="contact">
+			<p> </p>
+		</div>
+	</div><br><br>
+	<div class="col-md-6">
+		<p id="title-p-d">Urban Slate is clean and minimal</p>
+		<p id="contact-info">We are always open for a chat so feel free to contact us at:
+			Urban Slate - eCommerce  <br> 
+			Main St<br>
+			Vancvouer, BC <br>
+			(123) 941 756 1234<br>
+			(123) 941 756 1234<br>
+			<br>
+			<a href="#">HELP@US.com</a>
+		</p>
+	</div>
+
+	<div class="col-md-6">
+		<p id="title-p-d">Do not hesitate to contact us</p>
+		{{ open_form({'data-ajax-handler': 'system:onSendMessage'}) }}
+			{{ flash() }}
+			<div class="form">
+				<div class="field-row" id="contact-form">
+					<input class="required md-input form-control" placeholder="Email Address*" value="" name="fields[email]" id="fields_email"/>
+					<span class="error"></span>
+
+					<input class="required md-input form-control" placeholder="Name*" value="" name="fields[name]" id="fields_name" />
+					<span class="error"></span>
+
+					<textarea rows="10" class="required md-input form-control" placeholder="Message*" value="" name="fields[message]" id="fields_message"></textarea>
+					<span class="error"></span>
+				</div>
+				<input type="submit" class="btn-default btn" value="Submit"/>
+				<input type="text" name="hp" value="" style="display: none"/>
+			</div>
+		{{ close_form() }}
+	</div>
+</div>

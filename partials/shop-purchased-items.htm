@@ -1,0 +1,35 @@
+  <div class="row" id="cart-row">
+
+    <div class="col-sm-2" id="cart-img">
+      <img src="{{ item.product.images.first.thumbnail('auto', 'auto') }}" alt="{{ item.product.name }}">
+    </div>
+    <div class="row" id="align-middle">
+      <div class="col-sm-4">
+        <a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
+        {% set options = item.optionsString() %}
+        {% if options %}
+            <p class="h6">{{ options|unescape }}</p>
+        {% endif %}
+        {% set description = item.optionsString() %}
+          {% if description %}<p>{{ description|unescape }}</p>{% endif %}
+
+          {% for downloadable in item.digitalProductOrderItems %}
+              <div>
+                  <a href={{ downloadable.link() }}>{{ downloadable.file.name() }}</a>
+                  {% set downloadableDescription = downloadable.file.description %}
+                  {% if downloadableDescription %}<p>{{ downloadableDescription|unescape }}</p>{% endif %}
+              </div>
+            {% endfor %}
+      </div>
+      <div class="col-sm-2">
+        {% if edit_cart %}
+          <input type="text" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
+        {% else %}
+          {{item.quantity}}
+        {% endif %}
+      </div>
+      <div class="col-sm-3" id="item-middle">
+        <p class="col-sm-9">{{ item.total()|currency }}</p>
+      </div>
+    </div>
+  </div>

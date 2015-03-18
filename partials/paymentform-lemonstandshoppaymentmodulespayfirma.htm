@@ -1,0 +1,93 @@
+---
+description: 'Payment form partial for Payfirma payment method'
+---
+<br><br>
+<form method="post" action="" id="payfirma-payment-form">
+<div class="payment-card">
+    <input type="hidden" name="payment_method_id" value="{{ paymentMethod.id}}">
+    <div class="form">
+        <div class="row field-row">
+        
+          <div class="col-sm-6 form-group">
+              <label for="FIRSTNAME">Cardholder First Name</label>
+              <input autocomplete="off" name="FIRSTNAME" value="" id="FIRSTNAME" type="text" class="form-control" placeholder="Cardholder First Name"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          <div class="col-sm-6 form-group">
+              <label for="LASTNAME">Cardholder Last Name</label>
+              <input autocomplete="off" name="LASTNAME" value="" id="LASTNAME" type="text" class="form-control" placeholder="Cardholder Last Name"/>
+              <span class="error small text-danger"></span> 
+          </div>
+        
+          <div class="col-sm-12 form-group">
+              <label for="ACCT">Credit Card Number</label>
+              <input autocomplete="off" name="ACCT" value="" id="ACCT" type="text" class="form-control credit-card-input" placeholder="Credit Card Number" pattern="[0-9]*"/>
+              <span class="error small text-danger"></span> 
+          </div>
+          
+          <div class="col-sm-6 form-group">
+            <label for="CVV2">
+                  Card Security Code
+              </label>
+              <i class="fa fa-question"></i>
+            <input autocomplete="off" name="CVV2" value="" id="CVV2" type="text" class="form-control" placeholder="CSC"/>
+            <span class="error small text-danger"></span> 
+          </div>
+    
+          <div class="col-sm-3 form-group">
+              <label for="EXPDATE_MONTH">Expiration Month</label>
+              <select name="EXPDATE_MONTH" id="EXPDATE_MONTH" class="form-control">
+              {% for i in 1..12 %}
+                  <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+              </select>
+              <span class="error small text-danger"></span> 
+          </div>
+    
+          <div class="col-sm-3 form-group">
+              <label for="EXPDATE_YEAR">Expiration Year</label>
+              <select autocomplete="off" name="EXPDATE_YEAR" id="EXPDATE_YEAR" class="form-control">
+                  {% for i in 2014..2034 %}
+                  <option value="{{ i|slice(2, 2) }}">{{ i }}</option>
+                  {% endfor %}
+              </select>
+              <span class="error small text-danger"></span> 
+          </div>
+          
+    </div>
+    </div>
+    </div> <!-- End .payment-card -->
+      <input type="button" value="Pay Now" class="btn btn-important pull-right payment-button" onClick="doPayfirma(this)">
+</form>
+
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/ls2-vendor-code/payfirma/payfirma.minified.js"></script>
+<script type="text/javascript">
+    function doPayfirma(button) {
+        var form = $(button).parents('form')
+        var card_number = form.find('input[name="ACCT"]').val()
+        var card_expiry_month = form.find('select[name="EXPDATE_MONTH"]').val()
+        var card_expiry_year = form.find('select[name="EXPDATE_YEAR"]').val()
+        var cvv2 = form.find('input[name="CVV2"]').val()
+
+        var key = "{{ paymentMethod.getConfigSetting('encryptionKey') }}"
+        var formData = {};
+        $.each($('#payfirma-payment-form input, #payfirma-payment-form select'), function() {
+            formData[this.name] = this.value; }
+            );
+        var z = new Payfirma(key, {
+                'card_number': card_number,
+                'card_expiry_month': card_expiry_month,
+                'card_expiry_year':  card_expiry_year,
+                'cvv2': cvv2
+            }, formData, '/ls_payfirma_process', onAfterPayfirmaPay)
+    }
+
+    function onAfterPayfirmaPay(response) {
+        var r = $.parseJSON(response)
+        if (r.error)
+            alert(r.error)
+
+        if (r.redirect)
+            window.location = r.redirect
+    }
+</script>

@@ -1,0 +1,11 @@
+{% set on_sale = product.onSale %}
+<a href="/product/{{ product.url_name }}">
+  <img src="{{ product.images.first.thumbnail(350,350,{crop:true}) }}" alt="{{ product.name }}">
+  <div class="item-detail">
+    <h2>{{ product.name }}</h2>
+      {% if on_sale %}
+        <small class="previous-price">{{ product.fullPrice|currency }}</small>
+      {% endif %}   
+    <p>{{ product.price|currency }}</p> 
+  </div>
+</a>

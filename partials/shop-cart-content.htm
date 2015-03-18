@@ -1,0 +1,35 @@
+<p id="title-p-d">Your Cart</p>
+<div class="col-md-12">
+    {{ flash() }}
+    <div class="items-holder">
+        
+        {{ partial('shop-cart-items', {'edit_cart': true}) }}
+
+    </div>
+    
+    <div id="cart-actions" class="btn-holder clearfix">    
+        <a class="" href="{{ site_url('shop') }}" >Continue Shopping</a>
+    </div>
+</div>
+
+<div class="col-md-4" id="summary">
+    <p id="title-p-d">Order Summary</p>
+    <ul class="price-list list-group">
+        {% if totals.discountTotal > 0 %}
+            <li class="list-group-item">Discount: {{ totals.discountTotal|currency }}</li>
+        {% endif %}
+        {% if totals.totalShippingQuote > 0 %}
+            <li class="list-group-item">Shipping: {{ totals.totalShippingQuote|currency }}</li>
+        {% endif %}
+        <li class="list-group-item important">Total: {{ totals.total|currency }}</li>
+    </ul>
+    <div class="col-xs-12 form-group" id="coupon">
+        <input type="text" class="form-control" id="coupon-code" name="coupon" placeholder="Coupon Code" value="{{ coupon_code }}" />
+    </div>
+    <a class="btn btn-default col-xs-12 btn-lg solid" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart, #navbar-totals=shop-minicart-totals">Update Cart <i class="fa fa-refresh"></i></a>
+    {% if customer %}
+    <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout') }}">Checkout</a>
+    {% else %}
+    <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout-start') }}">Checkout</a>
+    {% endif %}
+</div>

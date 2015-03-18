@@ -1,0 +1,15 @@
+{% if payment %}
+<form method="post" action="{{ paymentMethod.getPaymentModuleObj().getFormAction(paymentMethod) }}">
+
+    {% set hiddenFields = paymentMethod.getPaymentModuleObj().getHiddenFields(paymentMethod, payment) %}
+    {% for field, value in hiddenFields %}
+        <input type="hidden" value="{{ value }}" name="{{ field }}">
+    {% endfor %}
+    <input type="submit" value="Pay with PayPal" class="button">
+</form>
+{% else %}
+    <form method="post" action="" data-ajax-handler="shop:onPay">
+        <input type="hidden" value="{{ paymentMethod.id }}" name="payment_method_id">
+        <input type="submit" value="Pay with PayPal" class="btn btn-important">
+    </form>
+{% endif %}

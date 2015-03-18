@@ -1,0 +1,40 @@
+---
+description: 'List of products on home page'
+---
+{{ open_form() }}
+
+  <ul class="clearfix">
+  {% set counter = 1 %}
+    {% for product in products %}
+      {% set is_on_sale = product.onSale %}
+      {% set page_url = '/product/' ~ product.url_name %}
+      {% if counter < 5 %}
+          <li class="three columns mobile-two {{ is_on_sale ? 'sale' : null }}">
+            <div class="item">
+              <div>
+                <a href="{{ page_url }}"><img src="{{ product.images.first.thumbnail(365, 365)|default('http://placehold.it/365x365') }}" width="365" height="365" alt="{{ product.images.first.description }}" title="{{ product.images.first.title }}"/></a>
+              </div>
+        
+              <div class="short-description">
+                  <h3><a href="{{ page_url }}">{{ product.name }}</a></h3>
+                  
+                  <span>
+                    <a href="{{ page_url }}">
+                      <i>
+                        {% if is_on_sale %}<span class="oldprice">{{ product.fullPrice|currency }}</span>{% endif %}
+                        {{ product.price|currency }}
+                      </i>
+                    </a>
+                  </span>
+              </div>
+              {% if is_on_sale %}<span class="salesign">SALE</span>{% endif %}
+            </div>
+          </li>
+          {% set counter = counter + 1 %}
+    {% endif %}
+    {% else %}
+      {% if empty_text %}<li class="empty">{{ empty_text }}</li>{% endif %}
+    {% endfor %}
+  </ul>
+
+{{ close_form() }}

@@ -1,0 +1,69 @@
+<!-- SHIPPING METHOD -->
+
+
+<div id="shop-checkout-shipping-method">
+{{ open_form({'class': 'custom'}) }}
+  <div class="row col-md-6 columns">
+    <h3>Shipping Method</h3>
+
+    <div class="col-md-6 columns">
+
+    {% if step == 'billing_info' %}
+      <p>Please fill out billing/shipping info</p>
+    {% elseif step == 'pay' %}
+      <p>Complete your transaction or start again</p>
+    {% elseif step == 'shipping_method' %}
+      {% if shippingOptions %}
+        <input type="hidden" value="" name="shippingMethod">
+        <table class="compact full-width" id="shipping-methods">
+          {% for index, option in shippingOptions %}
+            <tr>
+              <td>
+                <label for="{{ 'option'~index }}">
+                  <!-- The shipping method radio button clicks are handled in the app.js -->
+                  <input name="shippingMethod" 
+                    {{ option.error_hint ? 'disabled' : null }} 
+                    value="{{ index }}" 
+                    {{ radio_state(shippingMethodInfo.id, option.id) }}
+                    type="radio" id="{{ 'option'~index }}"/>
+                    
+                  <span class="choice-title">
+                    {{ option.shippingMethodName }}
+                    {% if option.shippingServiceName %}: {{ option.shippingServiceName }}{% endif %}
+                  </span>
+                  
+                  {% if option.error_hint %}
+                    <span class="choice-description error-hint">{{ option.error_hint }}</span>
+                  {% endif %}
+                </label>
+              </td>
+              <td class="narrow">
+                {% if not option.error_hint  %}
+                  {{ not option.is_free ? option.quote|currency : 'free' }}
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table> 
+      {% else %}
+        <p>We are sorry, there are no shipping options available for your location.</p>
+      {% endif %}
+    {% endif %}
+
+      {% if shippingOptions %}
+    <div class="row"> 
+      <div class="col-md-12 columns">
+        <div class="right">
+          <a class="button" href="#" data-ajax-handler="shop:checkout" data-ajax-update="#checkout-page=shop-checkout">Place order &amp; pay</a>
+          {{ inputs }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+    </div>
+    
+  </div>
+
+  
+{{ close_form() }}
+</div>
