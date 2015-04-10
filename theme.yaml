@@ -7,12 +7,10 @@ engine: twig
 404: '404'
 customFields:
     storeTitle: {type: text, title:'Title of your Store', default:'Slate'}
-    faviconImage: {type: image, title:'Favicon Image Image you see on the chrome', default:'@img/icon.png'}
+    faviconImage: {type: image, title:'Favicon Image you see in the browser. PNG image is required.', default:'@img/icon.png'}
+    logoImage: { type: image, title: 'Global: Logo Image', default: '@/img/logo.png'}
     navbarBackgroundColor: { type:color, title:'Global: Navbar Background Color', default:'white'}
     navbarLinkColor: { type: color, title:'Global: Navbar Link Color', default:'black'}
-    importantButton: { type:color, title:'Global: Important Button Color', default: 'black' }
-    payButton: { type:color, title:'Global: Payment button color', default: '#5cb85c'}
-    logoImage: { type: image, title: 'Global: Logo Image', default: '@/img/logo.png'}
     homeImageOne: { type: image, title: 'Home: Introduction Image Left', default: '@img/bg1.jpg'}
     homeImageTwo: { type: image, title: 'Home: Introduction Image Right', default: '@img/bg2.jpg'}
     homeFeature: { type: text, title: 'Home: Feature Items Title', default: 'TOP PICKS'}
@@ -23,6 +21,8 @@ customFields:
     socialTwitterUrl: { type: text, title: 'Global: Twitter URL', default: 'http://twitter.com/D_Hanul_Park' }
     socialInstagramUrl: { type: text, title: 'Global: Instagram URL', default: 'http://instagram.com' }
     socialPinterestUrl: {type: text, title: 'Global: Pinterest URL', default: 'https://www.pinterest.com'}
+    importantButton: { type:color, title:'Global: Important Button Color', default: 'black' }
+    payButton: { type:color, title:'Global: Payment button color', default: '#5cb85c'}
     shopItemsPerPage: { type:text, title:'Shop: Number of products displayed per page.', default:'15'}
 ---
 
