@@ -52,14 +52,14 @@ url: /login
             {{ open_form({'data-ajax-handler': 'shop:onSignup', 'data-validation-message' : '', 'class' : 'form-horizontal' }) }}
 
                 <div class="form-group">
-                    <label for="signup[first_name]" class="control-label">First Name</label><br>
+                    <label for="signup[first_name]" class="control-label">First Name *</label><br>
                     <div class="col-sm-9">
                         <input type="text" class="form-control input-sm" id="signup[first_name]" name="signup[first_name]" value="{{ post('signup[first_name]') }}" size="16"/>
                         <span class="error small text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="signup[last_name]" class="control-label">Last Name</label><br>
+                    <label for="signup[last_name]" class="control-label">Last Name *</label><br>
                     <div class="col-sm-9">
                         <input type="text" class="form-control input-sm" id="signup[last_name]" name="signup[last_name]" value="{{ post('signup[last_name]') }}" size="16"/>
                         <span class="error small text-danger"></span>
@@ -68,7 +68,7 @@ url: /login
 
 
                 <div class="form-group">
-                    <label for="signup[email]" class="control-label">Email</label><br>
+                    <label for="signup[email]" class="control-label">Email *</label><br>
                     <div class="col-sm-9">
                         <input type="email" class="form-control input-sm" id="signup[email]" name="signup[email]" value="{{ post('signup[email]') }}" size="40" />
                         <span class="error small text-danger"></span>
@@ -76,7 +76,7 @@ url: /login
                 </div>
 
                 <div class="form-group">
-                    <label for="signup[password]" class="control-label">Password</label><br>
+                    <label for="signup[password]" class="control-label">Password *</label><br>
                     <div class="col-sm-9">
                         <input type="password" class="form-control input-sm" id="signup[password]" name="signup[password]" value="" size="16" />
                         <span class="error small text-danger"></span>
@@ -84,7 +84,7 @@ url: /login
                 </div>
 
                 <div class="form-group">
-                    <label for="signup[password_confirmation]" class="control-label">Confirm</label><br>
+                    <label for="signup[password_confirmation]" class="control-label">Confirm *</label><br>
                     <div class="col-sm-9">
                         <input type="password" class="form-control input-sm" id="signup[password_confirmation]" name="signup[password_confirmation]" value="" size="16" />
                         <span class="error small text-danger"></span>
