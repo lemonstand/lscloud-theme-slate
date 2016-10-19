@@ -80,22 +80,22 @@
   <div class="col-sm-6 form-group">
     <input  data-mirror type="text" class="form-control disabled" name="shippingInfo[firstName]" id="shipping_firstName" value="{{ shippingInfo.firstName }}" placeholder="First Name"/>
     <span class="error small text-danger"></span>
-    <label for="shipping_firstName">First Name</label>
+    <label for="shipping_firstName">First Name *</label>
   </div>
   <div class="col-sm-6 form-group">
     <input data-mirror type="text" class="form-control disabled" name="shippingInfo[lastName]" id="shipping_lastName" value="{{ shippingInfo.lastName }}" placeholder="Last Name"/>
     <span class="error small text-danger"></span>
-    <label for="shipping_lastName">Last Name</label>
+    <label for="shipping_lastName">Last Name *</label>
   </div>
   <div class="col-sm-6 form-group">
     <input data-mirror type="text" class="form-control disabled" name="shippingInfo[phone]" id="shipping_phone" value="{{ shippingInfo.phone }}" placeholder="Phone Number"/>
     <span class="error small text-danger"></span>
-    <label for="shipping_phone">Phone Number</label>
+    <label for="shipping_phone">Phone Number *</label>
   </div>
   <div class="col-sm-12 form-group">
     <input data-mirror type="text" class="form-control disabled" name="shippingInfo[streetAddressLine1]" id="shipping_address"  value="{{ shippingInfo.streetAddressLine1 }}" placeholder="Address"/>
     <span class="error small text-danger"></span>
-    <label for="shipping_address">Address line 1</label>
+    <label for="shipping_address">Address line 1 *</label>
   </div>
   <div class="col-sm-12 form-group">
     <input data-mirror type="text" class="form-control disabled" name="shippingInfo[streetAddressLine2]" id="shipping_address"  value="{{ shippingInfo.streetAddressLine2 }}" placeholder="optional"/>
@@ -105,15 +105,15 @@
   <div class="col-sm-6 form-group">
     <input data-mirror type="text" class="form-control disabled" name="shippingInfo[city]" id="shipping_city" value="{{ shippingInfo.city }}" placeholder="City"/>
     <span class="error small text-danger"></span>
-    <label for="shipping_city">City</label>
+    <label for="shipping_city">City *</label>
   </div>
   <div class="col-sm-6 form-group">
     <input data-mirror type="text" class="form-control disabled" name="shippingInfo[postalCode]" id="shipping_postalCode" value="{{ shippingInfo.postalCode }}" placeholder="Zip Code"/>
     <span class="error small text-danger"></span>
-    <label for="shipping_postalCode">Zip Code</label>
+    <label for="shipping_postalCode">Zip Code *</label>
   </div>
   <div class="col-sm-6 form-group">
-    <label for="shipping_country" class="hide">Country</label>
+    <label for="shipping_country" class="hide">Country *</label>
       <select data-mirror id="shipping_country" class="chzn-select form-control disabled" name="shippingInfo[countryId]" data-state-selector="#shipping_state" data-current-state="{{ shippingInfo.stateId }}" >
       {% for country in countries %}
       <option {{ option_state(shippingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
@@ -122,7 +122,7 @@
     <span class="error small text-danger"></span>
   </div>
   <div class="col-sm-6 form-group">
-    <label for="shipping_state" class="hide">State</label>
+    <label for="shipping_state" class="hide">State *</label>
       <select data-mirror id="shipping_state" class="chzn-select form-control disabled" name="shippingInfo[stateId]" data-ajax-refresh > 
       {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shippingInfo.stateId}) }}
       </select>
