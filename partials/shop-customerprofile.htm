@@ -20,8 +20,14 @@
         </div>
         
         <div class="col-sm-12 form-group">
-          <label for="billing_address">Address</label>
+          <label for="billing_address">Address line 1</label>
           <input name="billing[street_address]" id="billing_address" type="text" class="form-control" placeholder="street address*" value="{{ billing.street_address }}"/>
+          <span class="error"></span>
+        </div>
+
+        <div class="col-sm-12 form-group">
+          <label for="billing_address">Address line 2</label>
+          <input name="billing[street_address_line2]" id="billing_address" type="text" class="form-control" placeholder="optional" value="{{ billing.street_address_line2 }}"/>
           <span class="error"></span>
         </div>
         
@@ -102,8 +108,14 @@
         </div>
 
         <div class="col-sm-12 form-group">
-          <label for="shipping_address">Address</label>
+          <label for="shipping_address">Address line 1</label>
           <input name="shipping[street_address]" id="shipping_address" type="text" class="form-control" placeholder="street address*" value="{{ shipping.street_address }}"/>
+          <span class="error"></span>
+        </div>
+
+        <div class="col-sm-12 form-group">
+          <label for="shipping_address">Address line 2</label>
+          <input name="shipping[street_address_line2]" id="shipping_address" type="text" class="form-control" placeholder="optional" value="{{ shipping.street_address_line2 }}"/>
           <span class="error"></span>
         </div>
 
