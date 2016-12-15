@@ -14,7 +14,7 @@
 <div class="row checkout-row">
 
 <div class="col-md-9">
-  
+
 
 <div class="checkout-tab" id="shop-address">
   <div class="checkout-tab-bar row">
@@ -22,23 +22,23 @@
       <p>
         {% if step == 'billing_info' %}
           <i class="fa fa-circle-thin"></i>
-          Step 1: Billing/Shipping Address 
+          Step 1: Billing/Shipping Address
         {% elseif step == 'shipping_method' %}
-          <i class="fa fa-check goback-icon"></i> 
+          <i class="fa fa-check goback-icon"></i>
           <a class="goback-tab data-ajax-url"
-        data-ajax-handler="shop:checkout" 
+        data-ajax-handler="shop:checkout"
         data-ajax-update="#checkout-page=shop-checkout"
         data-ajax-extra-fields="nextStep=billing_info"
         data-hash="step-1">Step 1: Billing/Shipping Address</a>
         {% elseif step == 'pay' %}
-          <i class="fa fa-check goback-icon"></i> 
-          <a class="goback-tab data-ajax-url" 
-        data-ajax-handler="shop:checkout" 
+          <i class="fa fa-check goback-icon"></i>
+          <a class="goback-tab data-ajax-url"
+        data-ajax-handler="shop:checkout"
         data-ajax-update="#checkout-page=shop-checkout"
         data-ajax-extra-fields="nextStep=billing_info"
         data-hash="step-1">Step 1: Billing/Shipping Address</a>
         {% endif %}
-        
+
       </p>
     </div>
     <div class="col-md-6 columns text-right">
@@ -66,14 +66,14 @@
     <div class="col-md-12 col-sm-12 col-lg-6">
 
       <p id="title-p-d">
-      
+
       Billing Address
         <span class="fa-stack" style="visibility:hidden;">
               <i class="fa fa-square-o fa-stack-2x"></i>
               <i class="fa fa-check fa-stack-1x"></i>
             </span>
       </p>
-      
+
       <div id="billing-info" class="row">
         <div class="col-sm-6 form-group">
           <label for="billing_firstName">First Name *</label>
@@ -96,9 +96,14 @@
           <span class="error small text-danger"></span>
         </div>
         <div class="col-sm-12 form-group">
-          <label for="billing_address">Address *</label>
           <input data-mirror type="text" class="form-control" id="billing_address" name="billingInfo[streetAddressLine1]" value="{{ billingInfo.streetAddressLine1 }}" placeholder="123 Example Dr"/>
           <span class="error small text-danger"></span>
+          <label for="billing_address">Address line 1 *</label>
+        </div>
+        <div class="col-sm-12 form-group">
+          <input data-mirror type="text" class="form-control" id="billing_address" name="billingInfo[streetAddressLine2]" value="{{ billingInfo.streetAddressLine2 }}" placeholder="optional"/>
+          <span class="error small text-danger"></span>
+          <label for="billing_address">Address line 2</label>
         </div>
         <div class="col-sm-6 form-group">
           <label for="billing_city">City *</label>
@@ -112,10 +117,10 @@
         </div>
         <div class="col-sm-6 form-group">
           <label for="billing_country" class="hide">Country *</label>
-          <!-- 
-            The state selector updates automatically when the country changes. 
-            See app.js for the implementation details. 
-            -->        
+          <!--
+            The state selector updates automatically when the country changes.
+            See app.js for the implementation details.
+            -->
             <select data-mirror id="billing_country" class="chzn-select form-control" name="billingInfo[countryId]" data-state-selector="#billing_state" data-current-state="{{ billingInfo.stateId }}">
             {% for country in countries %}
             <option {{ option_state(billingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
@@ -125,17 +130,17 @@
         </div>
         <div class="col-sm-6 form-group">
           <label for="billing_state" class="hide">State</label>
-            <select data-mirror id="billing_state" class="chzn-select form-control" name="billingInfo[stateId]" data-ajax-refresh> 
+            <select data-mirror id="billing_state" class="chzn-select form-control" name="billingInfo[stateId]" data-ajax-refresh>
             {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billingInfo.stateId}) }}
             </select>
           <span class="error small text-danger"></span>
-        </div> 
+        </div>
 
       </div>
     </div>
-  
+
     <div class="col-md-12 col-sm-12 col-lg-6" id="mobile-shipping">
-      <p id="title-p-d">Shipping Address | 
+      <p id="title-p-d">Shipping Address |
           <a data-toggle-mirror="on" class="btn-form-mirror">
             <span class="fa-stack">
               <i class="fa fa-square-o fa-stack-2x" style="visibility:visible"></i>
@@ -167,6 +172,11 @@
           <input data-mirror type="text" class="form-control disabled" name="shippingInfo[streetAddressLine1]" id="shipping_address"  value="{{ shippingInfo.streetAddressLine1 }}" placeholder="Address"/>
           <span class="error small text-danger"></span>
         </div>
+        <div class="col-sm-12 form-group">
+          <label for="shipping_address">Address 2</label>
+          <input data-mirror type="text" class="form-control disabled" name="shippingInfo[streetAddressLine2]" id="shipping_address"  value="{{ shippingInfo.streetAddressLine2 }}" placeholder="optional"/>
+          <span class="error small text-danger"></span>
+        </div>
         <div class="col-sm-6 form-group">
           <label for="shipping_city">City *</label>
           <input data-mirror type="text" class="form-control disabled" name="shippingInfo[city]" id="shipping_city" value="{{ shippingInfo.city }}" placeholder="City"/>
@@ -188,12 +198,12 @@
         </div>
         <div class="col-sm-6 form-group">
           <label for="shipping_state" class="hide">State</label>
-            <select data-mirror id="shipping_state" class="chzn-select form-control disabled" name="shippingInfo[stateId]" data-ajax-refresh > 
+            <select data-mirror id="shipping_state" class="chzn-select form-control disabled" name="shippingInfo[stateId]" data-ajax-refresh >
             {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shippingInfo.stateId}) }}
             </select>
-          <span class="error small text-danger"></span> 
+          <span class="error small text-danger"></span>
         </div>
-        
+
       </div>
     </div>
 
@@ -206,7 +216,7 @@
         {% if step == 'billing_info' %}
           <a href="#top" class="btn btn-important pull-right data-ajax-url" data-ajax-handler="shop:checkout" data-ajax-update="#checkout-totals=shop-checkout-totals, #checkout-page=shop-checkout" data-hash="step-2">Proceed to Shipping</a>
         {% else %}
-          
+
         {% endif %}
         {{ inputs }}
         </div>
@@ -224,15 +234,15 @@
     <div class="col-md-6 columns">
       <p>
         {% if step == 'billing_info' %}
-          <i class="fa fa-circle-thin"></i> 
+          <i class="fa fa-circle-thin"></i>
           Step 2: Shipping Method
         {% elseif step == 'shipping_method' %}
-          <i class="fa fa-circle-thin"></i> 
+          <i class="fa fa-circle-thin"></i>
           Step 2: Shipping Method
         {% elseif step == 'pay' %}
-          <i class="fa fa-check  goback-icon"></i> 
+          <i class="fa fa-check  goback-icon"></i>
           <a class="goback-tab data-ajax-url"
-        data-ajax-handler="shop:checkout" 
+        data-ajax-handler="shop:checkout"
         data-ajax-update="#checkout-page=shop-checkout"
         data-ajax-extra-fields="nextStep=shipping_method"
         data-hash="step-2">Step 2: Shipping Method</a>
@@ -269,7 +279,7 @@
       <p>Choose Payment method or start again</p>
     {% elseif step == 'shipping_method' %}
       {% if shippingOptions %}
-      
+
             <input type="hidden" value="" name="shippingMethod"><br>
             <table class="compact full-width" id="shipping-methods">
               {% for index, option in shippingOptions %}
@@ -278,17 +288,17 @@
                   <td>
                     <label for="{{ 'option'~index }}">
                       <!-- The shipping method radio button clicks are handled in the app.js -->
-                      <input name="shippingMethod" 
-                        {{ option.error_hint ? 'disabled' : null }} 
-                        value="{{ index }}" 
+                      <input name="shippingMethod"
+                        {{ option.error_hint ? 'disabled' : null }}
+                        value="{{ index }}"
                         {{ radio_state(shippingMethodInfo.id, option.id) }}
                         type="radio" id="{{ 'option'~index }}" checked/>
-                        
+
                       <span class="choice-title">
                         {{ option.shippingMethodName }}
                         {% if option.shippingServiceName %}: {{ option.shippingServiceName }}{% endif %}
                       </span>
-                      
+
                       {% if option.error_hint %}
                         <span class="choice-description error-hint">{{ option.error_hint }}</span>
                       {% endif %}
@@ -305,17 +315,17 @@
                   <td>
                     <label for="{{ 'option'~index }}">
                       <!-- The shipping method radio button clicks are handled in the app.js -->
-                      <input name="shippingMethod" 
-                        {{ option.error_hint ? 'disabled' : null }} 
-                        value="{{ index }}" 
+                      <input name="shippingMethod"
+                        {{ option.error_hint ? 'disabled' : null }}
+                        value="{{ index }}"
                         {{ radio_state(shippingMethodInfo.id, option.id) }}
                         type="radio" id="{{ 'option'~index }}" checked/>
-                        
+
                       <span class="choice-title">
                         {{ option.shippingMethodName }}
                         {% if option.shippingServiceName %}: {{ option.shippingServiceName }}{% endif %}
                       </span>
-                      
+
                       {% if option.error_hint %}
                         <span class="choice-description error-hint">{{ option.error_hint }}</span>
                       {% endif %}
@@ -339,7 +349,7 @@
         <br><br>
         <a class="btn btn-important pull-right data-ajax-url " data-ajax-handler="shop:checkout" data-ajax-update="#checkout-page=shop-checkout" data-hash="step-3">Proceed to Pay</a>
         <a class="btn btn-default pull-left data-ajax-url"
-        data-ajax-handler="shop:checkout" 
+        data-ajax-handler="shop:checkout"
         data-ajax-update="#checkout-page=shop-checkout"
         data-ajax-extra-fields="nextStep=billing_info" data-hash="step-1">Previous Step</a>
         {{ inputs }}
@@ -356,11 +366,11 @@
     <div class="col-md-6 columns">
       <p>
         {% if step == 'billing_info' %}
-          <i class="fa fa-circle-thin"></i> 
+          <i class="fa fa-circle-thin"></i>
         {% elseif step == 'shipping_method' %}
-          <i class="fa fa-circle-thin"></i> 
+          <i class="fa fa-circle-thin"></i>
         {% elseif step == 'pay' %}
-          <i class="fa fa-circle-thin"></i> 
+          <i class="fa fa-circle-thin"></i>
         {% endif %}
         Step 3: Payment Method
       </p>
@@ -399,7 +409,7 @@
         <div id="payment_method">
           <div class="col-md-12 columns">
             {{ open_form({'class': 'custom'}) }}
-                {% for method in paymentMethods %}  
+                {% for method in paymentMethods %}
                     {% if loop.index == 1 %}
                         {% set paymentMethod = method %}
                         <input class="custom-radio" name="paymentMethodId" value="{{ method.id }}" type="radio" id="payment-method{{ method.id }}" checked="checked"/>
@@ -424,19 +434,19 @@
               {% set message = payment_method.pay_offline_message() %}
               {% if message %}
                 <p>{{ message }}</p>
-              {% else %}  
+              {% else %}
               {% endif %}
             {% endif %}
         </div>
 
-        
+
         <a class="btn btn-default pull-left data-ajax-url"
         id="previous-shipping-method"
-        data-ajax-handler="shop:checkout" 
+        data-ajax-handler="shop:checkout"
         data-ajax-update="#checkout-page=shop-checkout"
         data-ajax-extra-fields="nextStep=shipping_method"
         data-hash="step-2">Previous Step</a>
-        
+
       {% endif %}
     </div>
 {% else %}
