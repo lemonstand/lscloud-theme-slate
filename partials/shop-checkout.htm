@@ -1,4 +1,4 @@
-  {% if step == 'billing_info' %}
+{% if step == 'billing_info' %}
     {% set inputs %}
       <input type="hidden" name="step" value="billing_info,shipping_info">
       <input type="hidden" name="nextStep" value="shipping_method"/>
@@ -292,7 +292,7 @@
                         {{ option.error_hint ? 'disabled' : null }}
                         value="{{ index }}"
                         {{ radio_state(shippingMethodInfo.id, option.id) }}
-                        type="radio" id="{{ 'option'~index }}"/>
+                        type="radio" id="{{ 'option'~index }}" checked/>
 
                       <span class="choice-title">
                         {{ option.shippingMethodName }}
@@ -319,7 +319,7 @@
                         {{ option.error_hint ? 'disabled' : null }}
                         value="{{ index }}"
                         {{ radio_state(shippingMethodInfo.id, option.id) }}
-                        type="radio" id="{{ 'option'~index }}" checked/>
+                        type="radio" id="{{ 'option'~index }}"/>
 
                       <span class="choice-title">
                         {{ option.shippingMethodName }}
