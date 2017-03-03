@@ -1,4 +1,4 @@
-  {% if step == 'billing_info' %}
+{% if step == 'billing_info' %}
     {% set inputs %}
       <input type="hidden" name="step" value="billing_info,shipping_info">
       <input type="hidden" name="nextStep" value="shipping_method"/>
@@ -283,7 +283,7 @@
             <input type="hidden" value="" name="shippingMethod"><br>
             <table class="compact full-width" id="shipping-methods">
               {% for index, option in shippingOptions %}
-              {% if loop.index == 0 %}
+              {% if loop.index == 1 %}
                 <tr>
                   <td>
                     <label for="{{ 'option'~index }}">
@@ -319,7 +319,7 @@
                         {{ option.error_hint ? 'disabled' : null }}
                         value="{{ index }}"
                         {{ radio_state(shippingMethodInfo.id, option.id) }}
-                        type="radio" id="{{ 'option'~index }}" checked/>
+                        type="radio" id="{{ 'option'~index }}"/>
 
                       <span class="choice-title">
                         {{ option.shippingMethodName }}
