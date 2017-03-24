@@ -1,4 +1,39 @@
-<h2>{{ product.name }}</h2> 
+{{ flash() }}
+<h2>
+	{{ product.name }}
+	{% if theme.ratingToggle %}
+		<div class="product-rating-container">
+			<!-- product ratings -->
+			{% set product_rating = product.rating() %}
+			<p style="display: inline;">
+				{% if product_rating.total_reviews %}
+					<span style="margin-right: -4px">
+						{% for i in range(1, product_rating.average_int) %}
+							&starf;
+						{% endfor %}
+					</span>
+					{% if product_rating.average_int != 5 %}
+						{% for i in range(1, 5 - product_rating.average_int) %}
+							&star;
+						{% endfor %}
+					{% endif %}
+					({{ product_rating.total_reviews }})&nbsp;
+					<!-- View Review -->
+					<a data-toggle="modal" data-target="#productReviewModal" href="#">View Review(s)</a>
+					&nbsp;&nbsp;|&nbsp;&nbsp;
+				{% else %}
+					&star;&star;&star;&star;&star;
+					(no reviews yet)
+				{% endif %}
+				<!-- Write Review -->
+				<a data-toggle="modal" data-target="#productWriteModal" href="#">Write Review</a>
+			</p>
+
+			{{ partial('shop-product-review-view') }}
+		</div>
+	{% endif %}
+</h2>
+
 	{% set on_sale = product.onSale %}
 	<div id="product-gallery">
 		{% for image in product.images %}
@@ -10,47 +45,75 @@
 		<div class="col-md-8">
 			{% if on_sale %}
 				<small class="previous-price">{{ product.fullPrice|currency }}</small>
-			{% endif %} 
+			{% endif %}
 			<h3>{{ product.price|currency }}</h3>
 
 	  	<p>{{product.description|unescape}}</p>
 		</div>
 
+
+
+
+
 		<div class="col-md-4" id="attributes">
+			<div class="row">
+				<div class="col-md-12 social">
+					{% if theme.socialToggle %}
+						{{ partial('shop-social-share') }}
+					{% endif %}
+				</div>
+			</div>
+
 			{{ partial('shop-product-attributes') }}
 
 			{% if product.enabled %}
-	      
-	      {{ partial('shop-product-options') }}
-	      {{ partial('shop-product-extras') }}
-	      
+
+				{{ partial('shop-product-bulk-pricing') }}
+				{{ partial('shop-product-extras') }}
+				{{ partial('shop-product-options') }}
+
+
 	    {% if not product.isOutOfStock() or product.allow_preorder %}
+				<hr />
 	      <input type="hidden" name="productId" value="{{ product.id }}"/>
 		      <div class="add-cart-holder form-group">
-		        
+
 		        <div class="quantity-selector">
 		        	<label class="title">Quantity</label>
 		          <input class="form-control quantity" type="text" value="{{ quantity|default("1") }}" name="quantity"/>
 		        </div>
 		      </div>
-		      {{ flash() }}
+
 		      <a class="btn btn-important btn-add-cart" data-ajax-handler="shop:onAddToCart" data-ajax-update="#normal-carts=shop-minicart-totals, #product-page=shop-product, #mini-cart=shop-minicart" >Add to Cart </a>
 		</div>
-	      
+
 	    {% else %}
 	      <div class="not-available">
 	        <h5>This product is temporarily unavailable</h5>
 	      <div>
 	    {% endif %}
-	    
+
 	  {% else %}
 	    <div class="not-available">
 	      <h5>This product is not available</h5>
 	    <div>
   {% endif %}
+</div>
+<div class="row content" >
+	<div class="col-md-12">
+		<div id="cross-sell-items" class="col-sm-12">
+			<hr />
+			<h4>Related items</h4>
+			{% for product in product.crosssells %}
+					{{ partial('shop-product-related-item', {'product':product}) }}
+			{% endfor %}
+			{% for product in product.upsells %}
+					{{ partial('shop-product-related-item', {'product':product}) }}
+			{% endfor %}
 
-	
+		</div>
 	</div>
+</div>
 
 
 <script type="text/javascript">
@@ -58,6 +121,3 @@
 	  document.getElementById("big-thumb").src=a;
 	};
 </script>
-
-
-

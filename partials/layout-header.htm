@@ -15,15 +15,17 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
+
       <ul class="nav navbar-nav">
-        <li><a class="navbar-brand" id="logo" href="{{ site_url('/') }}"><img src="{{ theme.logoImage.thumbnail('auto','auto') }}" alt=""/></a></li>
-        <li><a href="{{ site_url('shop') }}">STORE</a></li>
+        <li>
+          <a class="navbar-brand" id="logo" href="{{ site_url('/') }}">
+            <img src="{{ theme.logoImage.thumbnail('auto','auto') }}" alt=""/>
+          </a>
+        </li>
+        {{ widget_block("header-menu") }}
       </ul>
-
-
-
       <ul class="nav navbar-nav navbar-right">
-        <li>        
+        <li>
           {% if customer %}
             <p>Welcome, <a href="{{ site_url('profile') }}">{{ customer.first_name }}</a>!<a href="{{ site_url('logout') }}"> Logout</a></p>
 
@@ -53,5 +55,3 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-

@@ -1,0 +1,50 @@
+---
+action: 'cmscontent:blog'
+template: template-1
+protocol: all
+published: true
+name: 'Blog Post'
+url: /blog/:slug
+---
+
+<div class="jumbotron">
+  <div class="row" id="product">
+    <div id="product-page">
+      <h2>
+        {{ post.title }}
+        <p>
+          <small><em>Published {{ post.published_on | date("F j, Y") }} In {{ post.type }}</em></small>
+        </p>
+      </h2>
+
+      {% if featured_image %}
+        <div class="product-gallery">
+          <img src="{{ featured_image.thumbnail(1000, 'auto')|default('http://placehold.it/1000x365') }}" alt="{{ featured_image.alt }}" style="width:100%"/>
+        </div>
+      {% endif %}
+      <div id="blog-detail" class="row content">
+        <div class="col-md-12">
+          {{ post.body | unescape }}
+
+          <!-- BIO -->
+          <div class="bio-container">
+            {% if profile_image %}
+                <img class="img-circle" src="{{ profile_image.thumbnail(252, 'auto')|default('http://placehold.it/100x100') }}" style="height: 100px; width: 100px;" alt="{{ profile_image.alt }}"/>
+            {% endif %}
+            <strong>{{ post.author_name }}</strong>
+            <ul class="social-links">
+              {% for link in post.user.getSocialProfiles() %}
+                <li class="{{ link.name }}">
+                  <a href="{{ link.link }}"><i class="icon icon-{{ link.name }}"></i><span>{{ link.name }}</span></a>
+                </li>
+              {% endfor %}
+            </ul>
+            <div class="author-bio">
+              {{ post.user.user_bio|unescape }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

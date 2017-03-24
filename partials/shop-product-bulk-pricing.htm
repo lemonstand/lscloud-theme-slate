@@ -1,0 +1,15 @@
+{% if product.priceTiers %}
+<h4>Bulk Pricing</h4>
+<table class="table table-bordered">
+    <thead>
+        <td>Qty</td>
+        <td>Price</td>
+    </thead>
+    {% for priceTier in product.priceTiers %}
+        <tr>
+            <td>{% if loop.last %} {{priceTier.quantity}}+{% else %} {{ priceTier.quantity}} - {{product.priceTiers[loop.index].quantity - 1}} {% endif %}</td>
+            <td>{{priceTier.price|currency}}/each</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}

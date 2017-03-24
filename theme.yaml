@@ -24,6 +24,6 @@ customFields:
     importantButton: { type:color, title:'Global: Important Button Color', default: 'black' }
     payButton: { type:color, title:'Global: Payment button color', default: '#5cb85c'}
     shopItemsPerPage: { type:text, title:'Shop: Number of products displayed per page.', default:'15'}
+    ratingToggle: { type: checkbox, title: 'Product Ratings', default: checked, comment: 'Activate product ratings for this theme.' }
+    socialToggle: { type: checkbox, title: 'Social Links', default: checked, comment: 'Activate social media links.' }
 ---
-
-
