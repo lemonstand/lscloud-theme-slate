@@ -120,3 +120,8 @@
   padding-bottom: 0;
   padding-top: 0;
 }
+
+.row.content.breadcrumb-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}

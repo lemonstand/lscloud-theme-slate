@@ -6,17 +6,22 @@ published: true
 name: 'Basic Page'
 url: '/page/:slug'
 ---
-<section class="main">
-	<div class="container box">
-		<div class="row">
-	        <div class ="col-lg-4 col-md-3 col-sm-12 columns">
-	            <img src="{{ featured_image.thumbnail(200, 'auto')|default('http://placehold.it/1000x365') }}" alt="{{ featured_image.alt }}"/>
-	        </div>
-	        <div class ="col-lg-8 col-md-9 col-sm-12 columns">
-	        	<h1>{{post.title}}</h1>
-	            <div class="basic-page-excerpt" style="margin-bottom: 20px">{{ post.excerpt | unescape }}</div>
-	            <div class="basic-page-body">{{ post.body | unescape }}</div>
-	        </div>
+
+	<div class="row content" id="shopp">
+		<div class="col-md-12">
+			<h4>{{post.title}}</h4>
 		</div>
+		<div class ="col-lg-4 col-md-3 col-sm-12">
+        <img src="{{ featured_image.thumbnail(200, 'auto')|default('http://placehold.it/1000x365') }}" alt="{{ featured_image.alt }}"/>
+    </div>
+    <div class ="col-lg-8 col-md-9 col-sm-12 columns">
+			{% if post.excerpt %}
+        <p>
+					{{ post.excerpt | unescape }}
+				</p>
+			{% endif %}
+			
+      <p>{{ post.body | unescape }}</p>
+    </div>
+
 	</div>
-</section>
