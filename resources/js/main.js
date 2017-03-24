@@ -27,12 +27,12 @@ $("#checkout-page").on('click', '.data-ajax-url', function(e) {
 
     if (window.innerWidth < 991) {
       if($(this).attr('data-hash') == 'step-2'){
-        $("html, body").scrollTop(50);  
+        $("html, body").scrollTop(50);
       }
     }
-    
 
-    // Allow the window to go back on hashchange 
+
+    // Allow the window to go back on hashchange
     setTimeout(function(){
       windowBack = true;
     }, 50);
@@ -124,7 +124,7 @@ $(window).on("hashchange", window, function(e) {
         });
       }
     });
-    
+
     // mirror toggle button
     $(window).on('onAjaxAfterUpdate', function() {
       if ($('.btn-form-mirror').length && sessionStorage.toggleMirror == 'off') {
@@ -132,28 +132,28 @@ $(window).on("hashchange", window, function(e) {
         $('#shipping-info').addClass('in');
       }
     });
-    
+
     //mirror source and destination fields
     function mirrorFields($mirrorSource, $mirrorTarget, event) {
       $($mirrorSource).each(function(idx) {
-        $(this).on(event, function() {  
+        $(this).on(event, function() {
             var mirrorVal = $(this).val();
             if ($('.btn-form-mirror').data('toggle-mirror') == 'on') {
-            $($mirrorTarget + ':eq('+idx+')').val(mirrorVal);     
+            $($mirrorTarget + ':eq('+idx+')').val(mirrorVal);
             }
-        });     
-      }); 
+        });
+      });
     }
-    
+
     mirrorFields('#billing-info [data-mirror]', '#shipping-info [data-mirror]', 'keyup keypress blur change');
     //mirrorFields('#billing-info select[data-mirror]', '#shipping-info select[data-mirror]', 'change');
-    
+
     //mirror all fields
     function mirrorAll() {
       $('#billing-info [data-mirror]').each(function(idx) {
           var mirrorVal = $(this).val();
-        $('#shipping-info [data-mirror]:eq('+idx+')').val(mirrorVal);     
-      }); 
+        $('#shipping-info [data-mirror]:eq('+idx+')').val(mirrorVal);
+      });
       //trigger change to update the state list
       $('#shipping_country[data-mirror]').trigger('change');
     }
@@ -162,10 +162,10 @@ $(window).on("hashchange", window, function(e) {
         mirrorAll();
       }
     });
-    
+
     //country select
     var tracker = false;
-    
+
     $('#billing_country[data-mirror]').on('change', function() {
       if ($('.btn-form-mirror').data('toggle-mirror') == 'on') {
          tracker = true;
@@ -178,7 +178,7 @@ $(window).on("hashchange", window, function(e) {
         console.log('ajax done');
         tracker = false;
       }
-      
+
       //force the shiping state to update if it's value is different ie. after a page refresh
       if ($('#shipping_state[data-mirror]').val() != $('#billing_state[data-mirror]').val()) {
         $('#shipping_state[data-mirror]').val($('#billing_state[data-mirror]').val());
@@ -199,7 +199,7 @@ if (window.innerWidth < 991) {
 
 //SEARCH ITEM
   $(document).on('click', '#search-item', function() {
-      $('.search-bar').toggleClass("active-search");  
+      $('.search-bar').toggleClass("active-search");
   });
   $(document).on('click', '#normal-carts', function() {
     if( $('.search-bar').hasClass("active-search") ){
@@ -210,13 +210,13 @@ if (window.innerWidth < 991) {
   });
 
 //===============
-//! AJAX / Cart    
+//! AJAX / Cart
 //===============
 var cartFlag = new $.Deferred();
 
 $(document).on('click', '.btn-add-cart', function() {
   cartFlag.resolve();
-  
+
   $(this).prepend('<i class="fa fa-refresh fa-spin"/>');
 });
 
@@ -227,19 +227,19 @@ $(document).ajaxComplete(function() {
     setTimeout(function() {
       $('#normal-cart').removeClass('added');
       cartFlag = new $.Deferred();
-    }, 500);  
+    }, 500);
   });
 });
 
 $('body').on('click', '.remove-item', function() {
   cartFlag.resolve();
-  
+
   $(this).find('.fa').removeClass('fa-times').addClass('fa-refresh fa-spin');
 });
 
 $('body').on('click', '#remove-cart-item', function() {
   cartFlag.resolve();
-  
+
   $(this).find('.fa').removeClass('fa-times').addClass('fa-refresh fa-spin');
 });
 
@@ -267,19 +267,19 @@ if ('#checkout-page') {
                         break;
                       case '51':
                       case '52':
-                      case '53': 
-                      case '54': 
-                      case '55': 
+                      case '53':
+                      case '54':
+                      case '55':
                         $('.credit-card-input').addClass('ma').removeClass('va mb d a');
                         break;
-                      case '5018': 
-                      case '5020': 
-                      case '5038': 
-                      case '6304': 
-                      case '6759': 
-                      case '6761': 
-                      case '6762': 
-                      case '6763': 
+                      case '5018':
+                      case '5020':
+                      case '5038':
+                      case '6304':
+                      case '6759':
+                      case '6761':
+                      case '6762':
+                      case '6763':
                         $('.credit-card-input').addClass('mb').removeClass('va ma d a');
                         break;
                       case '6': $('.credit-card-input').addClass('d').removeClass('va ma mb a');
@@ -292,7 +292,7 @@ if ('#checkout-page') {
            $('.credit-card-input').parent().removeClass('valid invalid');
         }
     }
-  
+
   // $('.fa-question').on({
   //   'mouseenter': function() {
   //     $(this).popover('show');
@@ -312,3 +312,7 @@ if ('#checkout-page') {
 }
 });
 });
+
+function writeReview() {
+    $('#productWriteModal').modal('show');
+}

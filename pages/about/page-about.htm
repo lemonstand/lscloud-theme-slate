@@ -1,0 +1,32 @@
+---
+description: 'The About Page'
+template: template-1
+protocol: all
+published: true
+name: About
+url: /about
+---
+<!--START INFO BLOCK -->
+<div class="row content" id="shopp">
+  <div>
+
+
+    <div id="about-text" class="col-md-8">
+      {{ content_block('about-page') }}
+    </div>
+    <div id="contact-text" class="col-md-4">
+      <div>
+        <a href="{{ theme.socialInstagramUrl }}"><i class="fa fa-instagram"></i></a>
+        <a href="{{ theme.socialFacebookUrl }}"><i class="fa fa-facebook"></i></a>
+        <a href="{{ theme.socialTwitterUrl }}"><i class="fa fa-twitter"></i></a>
+        <a href="{{ theme.socialPinterestUrl }}"><i class="fa fa-pinterest"></i></a>
+        <br><br>
+      </div>
+      <div>
+        <p>{{ theme.homeContactEmail }}</p>
+        <p>{{ theme.homeContactNumber }}</p>
+        <p>{{ theme.homeContactAddress }}</p>
+      </div>
+    </div>
+  </div>
+</div>

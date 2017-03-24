@@ -1,12 +1,12 @@
 {{ code_block('setup') }}
 
 
-    
+
     <div class="jumbotron" id="main-footer">
         <div class="row content">
             <div class="col-md-8">
-                
-<!--             {% tree categories %}
+
+              {% tree categories %}
                 <ul class="list-unstyled col-md-4">
                     <li class="title">SHOP</li>
                     <a href="{{ site_url('shop') }}"><li>All</li></a>
@@ -14,15 +14,9 @@
                     <a href="/category/{{ category.fullUrlName }}"><li>{{ category.name }}</li></a>
                 {% endfor %}
                 </ul>
-            {% endtree %} -->
+              {% endtree %}
 
-                
-                <ul class="list-unstyled col-md-4">
-                    <li class="title">MENU</li>
-                    <a href="{{ site_url('/') }}"><li>Home</li></a>
-                    <a href="{{ site_url('shop') }}"><li>Products</li></a>
-                    <a href="{{ site_url('profile') }}"><li>Profile</li></a>
-                </ul>
+              {{widget_block('footer-menu')}}
 
             </div>
             <div class="col-xs-6 col-md-4" id="foot-info">

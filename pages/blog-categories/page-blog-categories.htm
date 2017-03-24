@@ -1,0 +1,48 @@
+---
+action: 'cmscontent:archive'
+template: template-1
+protocol: all
+published: true
+name: Blog Categories
+url: /archives/:type/:category
+---
+
+  <div class="row content" id="shopp">
+    <h4>{{type}}</h4>
+    <div class="col-md-12 cat-list">
+  		<div class="dropdown">
+        <button class="btn btn-drop dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+          Categories
+          <span class="caret"></span>
+        </button>
+        {{ partial('blog-categories') }}
+      </div>
+  	</div>
+
+    {% if archives | length > 0 %}
+    {% paginate archives by 5 %}
+      <div class="col-md-12 blog-content">
+        {% for post in pagination.items %}
+          <div>
+            <p class="title-p-d"><a href="{{ post.permalink }}">{{ post.title }}</a></p>
+            <p>
+              {{ post.excerpt | unescape }}
+              <a href="/blog/{{ post.guid }}">Read More</a>
+            </p>
+          </div>
+          <hr/>
+        {% endfor %}
+      </div>
+      <div class="col-md-12 pagination-centered">
+        <div class="pagination-holder">
+          {% navigation %}
+        </div>
+      </div>
+
+      {% endpaginate %}
+      {% else %}
+        <div class="col-md-12">
+          <p>No {{ type }} posts found in category: {{ category }} {{ categoryID }}</p>
+        </div>
+      {% endif %}
+  </div>
