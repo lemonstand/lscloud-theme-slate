@@ -427,18 +427,8 @@
         </div>
 
         <div id="payment_form">
-            {% if paymentMethod is defined %}
-                {% set name = paymentMethod.getFrontendPartialName() %}
-                {{ partial(name, {paymentMethod: paymentMethod, payment: payment}) }}
-            {% else %}
-              {% set message = payment_method.pay_offline_message() %}
-              {% if message %}
-                <p>{{ message }}</p>
-              {% else %}
-              {% endif %}
-            {% endif %}
+            {{ partial('shop-paymentform', { paymentMethod : paymentMethod } ) }}
         </div>
-
 
         <a class="btn btn-default pull-left data-ajax-url"
         id="previous-shipping-method"
