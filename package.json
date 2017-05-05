@@ -2,7 +2,17 @@
   "name": "slate",
   "version": "1.0.0",
   "description": "Slate was created with product photography in mind. There are very few elements on the page that distract the customer from the products. The text and layout of the design compliment the products rather than take away from it. The minimal design and emphasis on images makes this a very visual theme. Use this if you want to guide visitors quickly through your conversion funnel",
-  "main": "index.js",
+  "main": "README.md",
+  "lemonstand" : {
+    "code":"slate",
+    "type": "theme",
+    "options": "options.json",
+    "demo" : "https//slate.lemonstand.com",
+    "screenshot" : {
+      "small":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-slate/master/resources/screenshots/tiny-square.png",
+      "large":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-slate/master/resources/screenshots/large-square.png"
+    }
+  },    
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
