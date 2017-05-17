@@ -64,9 +64,7 @@
 {{ open_form({'class': 'custom', 'data-validation-message' : ''}) }}
   <div class="col-md-12" style="padding-bottom: 0;">
     <div class="col-md-12 col-sm-12 col-lg-6">
-
       <p id="title-p-d">
-
       Billing Address
         <span class="fa-stack" style="visibility:hidden;">
               <i class="fa fa-square-o fa-stack-2x"></i>
@@ -397,6 +395,22 @@
 <div id="shop-checkout-payment-method" class="col-md-12 row">
 {% if cart %}
     <div class="col-md-12">
+      <!--  Pay with stored cards shown in dropdown -->
+      {% if cards is defined %}
+        <p id="title-p-d">Pay with a Saved Card</p>
+        <form class="custom saved-card-form" method="post" data-ajax-handler="shop:onPay">
+          <input type='hidden' name='payment_method_id' id='payment_method_id' value=''>
+          <select name="payment_method_token" class="md-select saved-card-selector" id="saved_card_option" style="margin-bottom: 15px;">
+            <option value=''>Select Saved Card</option>
+            {% for card in cards %}
+              <option id="token-{{ card.token }}" value="{{ card.token }}" card-method="{{ card.paymentMethod.id }}">{{ card.paymentMethod.name }}: {{ card.cardAndBrand }}</option>
+            {% endfor %}
+          </select>
+          <br>
+          <input type="submit" class="btn btn-important" value="Pay with Saved Card">
+        </form>
+        <br>
+      {% endif %}
         <p id="title-p-d">Select a Payment Method</p>
       {% if step == 'billing_info' %}
         <p>Please fill out billing/shipping info</p>
