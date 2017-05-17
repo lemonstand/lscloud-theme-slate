@@ -136,11 +136,11 @@
 }
 .card-table {
     font-size: 15px;
-    background-color: #DADFE1;
+    background-color: #F1F1F1;
 }
 .card-table th {
     padding: 10px;
-    color: #363636;
+    color: #555;
 }
 .card-table a,
 .card-table a:hover,
@@ -175,10 +175,11 @@
 }
 .ls-card-form .card-form-input {
     background-color: #FFF;
-    border: 1px solid #DDD;
+    border: 1px solid #CCC;
     font-family: inherit;
     box-shadow: none;
     border-radius: 0;
+    color: #555;
 }
 .ls-card-form .card-form-input:focus {
     border-color: black;
