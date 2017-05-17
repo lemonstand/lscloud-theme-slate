@@ -125,3 +125,90 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
+/* Card Form */
+
+.ls-card-form {
+    width: 100%;
+}
+.card-form-expiry-outer label {
+    display: inherit;
+}
+.card-table {
+    font-size: 15px;
+    background-color: #DADFE1;
+}
+.card-table th {
+    padding: 10px;
+    color: #363636;
+}
+.card-table a,
+.card-table a:hover,
+.card-table a:focus {
+    text-decoration: underline;
+}
+.card-form-close {
+    display: none;
+}
+.card-form-open {
+    display: block;
+}
+.ls-card-form .submit-button,
+.ls-card-form .delete-button {
+    border-radius: 0px;
+    border: 1px solid rgba(0, 0, 0, 1);
+    background: black;
+    color: white;
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    font-size: 1em;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.ls-card-form .submit-button:hover,
+.ls-card-form .delete-button:hover {
+    background: black;
+    color: rgba(255, 255, 255, 0.8);
+}
+.ls-card-form .card-form-input {
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    font-family: inherit;
+    box-shadow: none;
+    border-radius: 0;
+}
+.ls-card-form .card-form-input:focus {
+    border-color: black;
+    background-color: inherit;
+}
+.ls-card-form .card-form-input::-webkit-input-placeholder {
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    color: #D4D4D4;
+}
+.ls-card-form .card-form-input:-moz-placeholder {
+    /* Firefox 18- */
+    
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    color: #D4D4D4;
+}
+.ls-card-form .card-form-input::-moz-placeholder {
+    /* Firefox 19+ */
+    
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    color: #D4D4D4;
+}
+.ls-card-form .card-form-input:-ms-input-placeholder {
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    color: #D4D4D4;
+}

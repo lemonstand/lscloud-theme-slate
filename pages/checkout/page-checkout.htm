@@ -12,6 +12,7 @@ url: /checkout
 	      <a class="btn btn-default" href="{{ site_url('shop') }}">Your cart is empty! Continue shopping.</a>
 	    {% else %}
 	      <div id="checkout-page">{{ partial('shop-checkout') }}</div>
+          {{ code_block('script') }}
 	    {% endif %}
 		</div>
 	</div>	
