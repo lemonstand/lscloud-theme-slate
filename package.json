@@ -7,7 +7,7 @@
     "code":"slate",
     "type": "theme",
     "options": "options.json",
-    "demo" : "https//slate.lemonstand.com",
+    "demo" : "https://slate.lemonstand.com",
     "screenshots" : {
       "small":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-slate/master/resources/screenshots/tiny-square.png",
       "large":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-slate/master/resources/screenshots/large-square.png"
