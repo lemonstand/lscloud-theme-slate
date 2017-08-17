@@ -2,6 +2,7 @@
   "name": "Slate",
   "version": "1.0.0",
   "description": "Slate is an ultra-minimal theme that was created with product photography in mind. It may remind you of a starkart gallery. There are very few elements on the page that distract the customer from the products. The text and layout of the design compliment the products rather than take away from it. Use this if you want your products and photography to do the talking.",
+  "excerpt": "Slate is an ultra minimal theme that's designed to allow your product photography to do the talking.",
   "main": "README.md",
   "lemonstand" : {
     "code":"slate",
