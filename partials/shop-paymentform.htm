@@ -35,7 +35,7 @@
             },
             paymentMethod
         ) }}
-    {% elseif paymentMethod.isCustom() %}
+    {% elseif paymentMethod.isAlternative() %}
         {% set name = paymentMethod.getFrontendPartialName() %}
         {{ partial(name, {paymentMethod: paymentMethod, payment: payment}) }}
     {% endif %}
